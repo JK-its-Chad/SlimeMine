@@ -30,7 +30,9 @@ public class SlimeEnemy : MonoBehaviour {
             Quaternion lookAtMeSenpai = Quaternion.LookRotation(
                         (new Vector3(target.transform.position.x, 0 , target.transform.position.z))
                         - (new Vector3(transform.position.x, 0, transform.position.z)));
+
             gameObject.transform.rotation = Quaternion.RotateTowards(transform.rotation, lookAtMeSenpai, lookspeed);
+
             if(lookAtMeSenpai == transform.rotation)
             {
                 rig.AddForce(transform.forward.x * movementSpeed, 100, transform.forward.z * movementSpeed);

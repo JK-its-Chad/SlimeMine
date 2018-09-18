@@ -21,11 +21,10 @@ public class Tail : MonoBehaviour
 
         if (distanceToNextPosition > 0)
         {
-            Debug.Log("Lerp");
             transform.position = Vector3.Lerp(lastPosition, nextPosition, _timer);
         }
 
         lastPosition = nextPosition;
-        nextPosition = ((Slime.transform.position + (Slime.transform.forward * -.3f) - (Slime.transform.up * 0.02f)));
+        nextPosition = ((Slime.transform.position + (Slime.transform.forward * -.3f) - (Slime.transform.up * 0.03f)));
     }
 }

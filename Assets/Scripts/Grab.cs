@@ -70,7 +70,6 @@ public class Grab : MonoBehaviour {
             currentRotation = grabbedObject.transform.rotation;
         }
 
-        Debug.Log(Input.GetAxis(buttonName));
 		if(!grabbing && Input.GetAxis(buttonName) >= 0.9 ) GrabObject();
         if(grabbing && Input.GetAxis(buttonName) < 0.9) DropObject();
     }
