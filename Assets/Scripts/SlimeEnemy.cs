@@ -34,7 +34,6 @@ public class SlimeEnemy : MonoBehaviour {
             if(lookAtMeSenpai == transform.rotation)
             {
                 rig.AddForce(transform.forward.x * movementSpeed, 100, transform.forward.z * movementSpeed);
-                tail.transform.localPosition = Vector3.up;
                 grounded = false;
             }
 
