@@ -17,7 +17,6 @@ public class SlimeEnemy : MonoBehaviour {
     {
         rig = GetComponent<Rigidbody>();
 	}
-	
 
 	void FixedUpdate ()
     {
@@ -61,6 +60,11 @@ public class SlimeEnemy : MonoBehaviour {
     void OnCollisionStay()
     {
         grounded = true;
+    }
+
+    public void takeDamage(int damage)
+    {
+        health -= damage;
     }
 
 }
