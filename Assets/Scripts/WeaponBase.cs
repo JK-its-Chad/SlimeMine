@@ -4,13 +4,24 @@ using UnityEngine;
 
 public class WeaponBase : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
+
+
+	void Start ()
+    {
 		
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
+	void Update ()
+    {
+
 	}
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(gameObject.tag == "Weapon")
+        {
+            other.GetComponent<SlimeEnemy>().health -= 10;
+        }
+        
+    }
 }

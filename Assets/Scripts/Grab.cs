@@ -33,6 +33,7 @@ public class Grab : MonoBehaviour {
             grabbedObject.GetComponent<Rigidbody>().isKinematic = true;
             grabbedObject.transform.position = transform.position;
             grabbedObject.transform.parent = transform;
+            grabbedObject.tag = "Weapon";
         }
 
     }
@@ -49,6 +50,7 @@ public class Grab : MonoBehaviour {
             grabbedObject.GetComponent<Rigidbody>().angularVelocity = GetAngularVelocity();
 
             grabbedObject = null;
+            grabbedObject.tag = "Object";
         }
     }
 
