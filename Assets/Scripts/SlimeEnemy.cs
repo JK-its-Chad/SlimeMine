@@ -11,8 +11,9 @@ public class SlimeEnemy : MonoBehaviour {
     public int health = 100;
     public float jumpHeight = 100;
     public int movementSpeed = 10;
+    public int lookSpeed = 2;
 
-    private int lookspeed = 2;
+    private float ITimer = 0.75f;
 
     Rigidbody rig;
 
@@ -23,10 +24,6 @@ public class SlimeEnemy : MonoBehaviour {
 
 	void FixedUpdate ()
     {
-		if(health <= 0)
-        {
-            Die();
-        }
 
         if(gameObject.GetComponent<Rigidbody>().velocity.y <= 0.01f && gameObject.GetComponent<Rigidbody>().velocity.y >= -0.01f)
         {
@@ -35,13 +32,13 @@ public class SlimeEnemy : MonoBehaviour {
         
         if (grounded)
         {
-            Quaternion lookAtMeSenpai = Quaternion.LookRotation(
+            Quaternion playerRotation = Quaternion.LookRotation(
                         (new Vector3(target.transform.position.x, 0 , target.transform.position.z))
                         - (new Vector3(transform.position.x, 0, transform.position.z)));
 
-            gameObject.transform.rotation = Quaternion.RotateTowards(transform.rotation, lookAtMeSenpai, lookspeed);
+            gameObject.transform.rotation = Quaternion.RotateTowards(transform.rotation, playerRotation, lookSpeed);
 
-            if(lookAtMeSenpai == transform.rotation)
+            if(playerRotation == transform.rotation) 
             {
                 rig.AddForce(transform.forward.x * movementSpeed, jumpHeight, transform.forward.z * movementSpeed);
                 grounded = false;
@@ -51,7 +48,12 @@ public class SlimeEnemy : MonoBehaviour {
         
     }
 
-    void dealDmg()
+    private void Update() //for timer logic
+    {
+        ITimer -= Time.deltaTime;
+    }
+
+    private void dealDmg()
     {
         if(Vector3.Distance(gameObject.transform.position, target.transform.position) > .5)
         {
@@ -59,17 +61,24 @@ public class SlimeEnemy : MonoBehaviour {
         }
     }
 
-    void Die()
-    {
-        movementSpeed = 0;
-        lookspeed = 0;
-        gameObject.layer = 9;
-    }
-
     public bool takeDamage(int damage)
     {
-        health -= damage;
-        return true;
+        if (ITimer <= 0)
+        {
+            health -= damage;
+            ITimer = 0.75f;
+            if (health <= 0) Die();
+            return true;
+        }
+
+        return false;
+    }
+
+    private void Die()
+    {
+        movementSpeed = 0;
+        lookSpeed = 0;
+        gameObject.layer = 9;
     }
 
 }
