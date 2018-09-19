@@ -9,8 +9,11 @@ public class SlimeEnemy : MonoBehaviour {
     public GameObject tail;
 
     public int health = 100;
-    int lookspeed = 2;
-    int movementSpeed = 10;
+    public float jumpHeight = 100;
+    public int movementSpeed = 10;
+
+    private int lookspeed = 2;
+
     Rigidbody rig;
 
 	void Start ()
@@ -35,7 +38,7 @@ public class SlimeEnemy : MonoBehaviour {
 
             if(lookAtMeSenpai == transform.rotation)
             {
-                rig.AddForce(transform.forward.x * movementSpeed, 100, transform.forward.z * movementSpeed);
+                rig.AddForce(transform.forward.x * movementSpeed, jumpHeight, transform.forward.z * movementSpeed);
                 grounded = false;
             }
 
@@ -63,9 +66,10 @@ public class SlimeEnemy : MonoBehaviour {
         grounded = true;
     }
 
-    public void takeDamage(int damage)
+    public bool takeDamage(int damage)
     {
         health -= damage;
+        return true;
     }
 
 }
