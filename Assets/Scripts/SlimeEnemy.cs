@@ -27,6 +27,11 @@ public class SlimeEnemy : MonoBehaviour {
         {
             Die();
         }
+
+        if(gameObject.GetComponent<Rigidbody>().velocity.y <= 0.01f && gameObject.GetComponent<Rigidbody>().velocity.y >= -0.01f)
+        {
+            grounded = true;
+        }
         
         if (grounded)
         {
@@ -59,11 +64,6 @@ public class SlimeEnemy : MonoBehaviour {
         movementSpeed = 0;
         lookspeed = 0;
         gameObject.layer = 9;
-    }
-
-    void OnCollisionStay()
-    {
-        grounded = true;
     }
 
     public bool takeDamage(int damage)
