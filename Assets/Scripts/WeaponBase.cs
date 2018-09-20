@@ -15,26 +15,31 @@ public class WeaponBase : MonoBehaviour {
     public bool swingY = true;      // bools for if swinging an object in a local direction deals damage
     public bool swingZ = true;  
     public bool hasDurability;
+    public bool grabbed = false;
 
     protected List<GameObject> dealDamage()
     {
-        foreach(GameObject enemy in enemiesHit)
+        if (grabbed)
         {
-            if(enemy.GetComponent<SlimeEnemy>())
+            foreach (GameObject enemy in enemiesHit)
             {
-                
-                if(enemy.GetComponent<SlimeEnemy>().takeDamage(damage) && hasDurability)
+                if (enemy.GetComponent<SlimeEnemy>())
                 {
-                    durability--;
-                    if (durability <= 0) Destroy(gameObject);
+
+                    if (enemy.GetComponent<SlimeEnemy>().takeDamage(damage) && hasDurability)
+                    {
+                        durability--;
+                        if (durability <= 0) Destroy(gameObject);
+                    }
+                }
+                else
+                {
+                    enemiesHit.Remove(enemy);
                 }
             }
-            else
-            {
-                enemiesHit.Remove(enemy);
-            }
+            return enemiesHit;
         }
-        return enemiesHit;
+        return null;
     }
 
     protected void Start()
