@@ -1520,36 +1520,6 @@ Prefab:
       propertyPath: target
       value: 
       objectReference: {fileID: 1294385001}
-    - target: {fileID: 1784443804903080, guid: afe9a1c48f4413b4483c87a606f5fa88, type: 2}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1212916957392926, guid: afe9a1c48f4413b4483c87a606f5fa88, type: 2}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1576662972062912, guid: afe9a1c48f4413b4483c87a606f5fa88, type: 2}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1902907175948654, guid: afe9a1c48f4413b4483c87a606f5fa88, type: 2}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1861594137673954, guid: afe9a1c48f4413b4483c87a606f5fa88, type: 2}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 114641258745390324, guid: afe9a1c48f4413b4483c87a606f5fa88,
-        type: 2}
-      propertyPath: jumpHeight
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: 114641258745390324, guid: afe9a1c48f4413b4483c87a606f5fa88,
-        type: 2}
-      propertyPath: movementSpeed
-      value: 30
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: afe9a1c48f4413b4483c87a606f5fa88, type: 2}
   m_IsPrefabAsset: 0
@@ -1727,35 +1697,6 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: afe9a1c48f4413b4483c87a606f5fa88, type: 2}
   m_IsPrefabAsset: 0
---- !u!1 &1134999052 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1833558073461342, guid: 3c9fc4f1a42456648b25cd2d93fd4513,
-    type: 2}
-  m_PrefabInternal: {fileID: 2131983523}
---- !u!114 &1134999055
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1134999052}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad4dd064a75f83943a9abde48f3da8d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  detectMask:
-    serializedVersion: 2
-    m_Bits: 1024
-  damage: 10
-  durability: 1000
-  damageSpeed: 0.1
-  swingX: 1
-  swingY: 1
-  swingZ: 1
-  hasDurability: 0
-  grabbed: 0
-  controller: 0
-  player: {fileID: 0}
 --- !u!1 &1228844265
 GameObject:
   m_ObjectHideFlags: 0
@@ -2756,7 +2697,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 54292362356815294, guid: 3c9fc4f1a42456648b25cd2d93fd4513, type: 2}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c9fc4f1a42456648b25cd2d93fd4513, type: 2}
   m_IsPrefabAsset: 0

@@ -55,7 +55,6 @@ public class WeaponBase : MonoBehaviour {
         if (controller != OVRInput.Controller.None)
         {
             Vector3 localVel = OVRInput.GetLocalControllerVelocity(controller);
-            Debug.Log(localVel);
             if (swingX)
             {
                 if (localVel.x >= damageSpeed)

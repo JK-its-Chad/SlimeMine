@@ -28,21 +28,22 @@ public class Grab : MonoBehaviour {
             for(int i = 0; i < hits.Length; i++)
             {
                 if (hits[i].distance > hits[closestHit].distance) closestHit = i;
-                Debug.Log(hits[i].ToString());
             }
             grabbedObject = hits[closestHit].transform.gameObject;
             grabbedObject.GetComponent<Rigidbody>().isKinematic = true;
-            grabbedObject.transform.position = transform.position;
             grabbedObject.transform.parent = transform;
             if(grabbedObject.GetComponent<WeaponBase>())
             {
+                grabbedObject.transform.position = transform.position;
                 grabbedObject.GetComponent<WeaponBase>().grabbed = true;
                 grabbedObject.GetComponent<WeaponBase>().controller = controller;
                 grabbedObject.GetComponent<WeaponBase>().player = player;
+                grabbedObject.transform.localRotation = Quaternion.Euler(-90, 0, 90);
             }
         }
 
     }
+
     void DropObject()
     {
         grabbing = false;

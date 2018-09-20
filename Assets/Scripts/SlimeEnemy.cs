@@ -7,6 +7,8 @@ public class SlimeEnemy : MonoBehaviour {
     public GameObject target;
     bool grounded = true;
     public GameObject tail;
+    public int damage = 5;
+    public Material deadRed;
 
     public int health = 100;
     public float jumpHeight = 100;
@@ -15,7 +17,7 @@ public class SlimeEnemy : MonoBehaviour {
     public int slimeValue = 10;
 
     private float ITimer = 0.75f;
-    private bool dead = false;
+    public bool dead = false;
 
     Rigidbody rig;
 
@@ -58,14 +60,6 @@ public class SlimeEnemy : MonoBehaviour {
         ITimer -= Time.deltaTime;
     }
 
-    private void dealDmg()
-    {
-        if(Vector3.Distance(gameObject.transform.position, target.transform.position) > .5)
-        {
-            target.GetComponent<Movement>().health -= 5;
-        }
-    }
-
     public bool takeDamage(int damage, Movement player)
     {
         if (ITimer <= 0 && !dead)
@@ -86,10 +80,12 @@ public class SlimeEnemy : MonoBehaviour {
         foreach (Transform child in allChildren)
         {
             child.gameObject.layer = 9;
+            if (child.gameObject.GetComponent<MeshRenderer>())
+            {
+                child.gameObject.GetComponent<MeshRenderer>().material = deadRed;
+            }
         }
         gameObject.layer = 9;
         rig.freezeRotation = false;
-        player.slime += slimeValue;
     }
-
 }
