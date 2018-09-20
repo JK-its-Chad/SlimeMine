@@ -12,8 +12,10 @@ public class SlimeEnemy : MonoBehaviour {
     public float jumpHeight = 100;
     public int movementSpeed = 10;
     public int lookSpeed = 2;
+    public int slimeValue = 10;
 
     private float ITimer = 0.75f;
+    private bool dead = false;
 
     Rigidbody rig;
 
@@ -25,25 +27,28 @@ public class SlimeEnemy : MonoBehaviour {
 	void FixedUpdate ()
     {
 
-        if(gameObject.GetComponent<Rigidbody>().velocity.y <= 0.01f && gameObject.GetComponent<Rigidbody>().velocity.y >= -0.01f)
+        if (!dead)
         {
-            grounded = true;
-        }
-        
-        if (grounded)
-        {
-            Quaternion playerRotation = Quaternion.LookRotation(
-                        (new Vector3(target.transform.position.x, 0 , target.transform.position.z))
-                        - (new Vector3(transform.position.x, 0, transform.position.z)));
-
-            gameObject.transform.rotation = Quaternion.RotateTowards(transform.rotation, playerRotation, lookSpeed);
-
-            if(playerRotation == transform.rotation) 
+            if (gameObject.GetComponent<Rigidbody>().velocity.y <= 0.01f && gameObject.GetComponent<Rigidbody>().velocity.y >= -0.01f)
             {
-                rig.AddForce(transform.forward.x * movementSpeed, jumpHeight, transform.forward.z * movementSpeed);
-                grounded = false;
+                grounded = true;
             }
 
+            if (grounded)
+            {
+                Quaternion playerRotation = Quaternion.LookRotation(
+                            (new Vector3(target.transform.position.x, 0, target.transform.position.z))
+                            - (new Vector3(transform.position.x, 0, transform.position.z)));
+
+                gameObject.transform.rotation = Quaternion.RotateTowards(transform.rotation, playerRotation, lookSpeed);
+
+                if (playerRotation == transform.rotation)
+                {
+                    rig.AddForce(transform.forward.x * movementSpeed, jumpHeight, transform.forward.z * movementSpeed);
+                    grounded = false;
+                }
+
+            }
         }
         
     }
@@ -61,24 +66,30 @@ public class SlimeEnemy : MonoBehaviour {
         }
     }
 
-    public bool takeDamage(int damage)
+    public bool takeDamage(int damage, Movement player)
     {
-        if (ITimer <= 0)
+        if (ITimer <= 0 && !dead)
         {
             health -= damage;
             ITimer = 0.75f;
-            if (health <= 0) Die();
+            if (health <= 0) Die(player);
             return true;
         }
 
         return false;
     }
 
-    private void Die()
+    private void Die(Movement player)
     {
-        movementSpeed = 0;
-        lookSpeed = 0;
+        dead = true;
+        Transform[] allChildren = GetComponentsInChildren<Transform>();
+        foreach (Transform child in allChildren)
+        {
+            child.gameObject.layer = 9;
+        }
         gameObject.layer = 9;
+        rig.freezeRotation = false;
+        player.slime += slimeValue;
     }
 
 }

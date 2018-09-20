@@ -318,7 +318,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: 1
-  buttonName: Oculus_GearVR_LOddTrigger
+  buttonName: Oculus_GearVR_LIndexTrigger
   grabRadius: 0.1
   grabMask:
     serializedVersion: 2
@@ -335,7 +335,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: 2
-  buttonName: Oculus_GearVR_ROddTrigger
+  buttonName: Oculus_GearVR_RIndexTrigger
   grabRadius: 0.1
   grabMask:
     serializedVersion: 2

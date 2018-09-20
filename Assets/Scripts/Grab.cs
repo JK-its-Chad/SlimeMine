@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Grab : MonoBehaviour {
 
+    public Movement player;
     public OVRInput.Controller controller;
     public string buttonName;
     GameObject grabbedObject;
@@ -33,7 +34,12 @@ public class Grab : MonoBehaviour {
             grabbedObject.GetComponent<Rigidbody>().isKinematic = true;
             grabbedObject.transform.position = transform.position;
             grabbedObject.transform.parent = transform;
-            grabbedObject.tag = "Weapon";
+            if(grabbedObject.GetComponent<WeaponBase>())
+            {
+                grabbedObject.GetComponent<WeaponBase>().grabbed = true;
+                grabbedObject.GetComponent<WeaponBase>().controller = controller;
+                grabbedObject.GetComponent<WeaponBase>().player = player;
+            }
         }
 
     }
@@ -49,8 +55,14 @@ public class Grab : MonoBehaviour {
             grabbedObject.GetComponent<Rigidbody>().velocity = OVRInput.GetLocalControllerVelocity(controller);
             grabbedObject.GetComponent<Rigidbody>().angularVelocity = GetAngularVelocity();
 
+            if (grabbedObject.GetComponent<WeaponBase>())
+            {
+                grabbedObject.GetComponent<WeaponBase>().grabbed = false;
+                grabbedObject.GetComponent<WeaponBase>().controller = OVRInput.Controller.None;
+                grabbedObject.GetComponent<WeaponBase>().player = null;
+            }
+
             grabbedObject = null;
-            grabbedObject.tag = "Object";
         }
     }
 

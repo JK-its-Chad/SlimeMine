@@ -5,6 +5,7 @@ using UnityEngine;
 public class Movement : MonoBehaviour {
 
     public int health = 100;
+    public int slime = 0;
     void Start () {
 		
 	}
