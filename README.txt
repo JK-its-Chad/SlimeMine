@@ -2,19 +2,21 @@ Welcome to Slime Mine
 by: Connor and Joseph
 
 Goal of the game:
-Kill as many slimes possible before dying by any means.
+Kill and deposit as many slimes as possible before dying by any means.
 Grab everything and anything, even the corpse of a slime, to save yourself.
 
-Connor:
-Took all the glory
-Scrapped what Joe made
-Made it better, stronger, faster!
-Combat system
-Slime animation
-
 Joe:
-MY IDEA FOR THE SLIMES
 Made basic set up to improve on
 Slime movement
 Player movement
 Made scenes
+Testing
+
+Connor:
+Enhanced slime movement
+Slime killing/depositing
+Combat system
+Slime animation
+UI
+
+
