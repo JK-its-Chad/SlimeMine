@@ -11,7 +11,6 @@ public class Grab : MonoBehaviour {
     bool grabbing;
     public float grabRadius = .13f;
     public LayerMask grabMask;
-    public float snapX = -90, snapY = 0, SnapZ = 90;
 
     Quaternion lastRotation;
     Quaternion currentRotation;
@@ -36,10 +35,11 @@ public class Grab : MonoBehaviour {
             if(grabbedObject.GetComponent<WeaponBase>())
             {
                 grabbedObject.transform.position = transform.position;
-                grabbedObject.GetComponent<WeaponBase>().grabbed = true;
-                grabbedObject.GetComponent<WeaponBase>().controller = controller;
-                grabbedObject.GetComponent<WeaponBase>().player = player;
-                grabbedObject.transform.localRotation = Quaternion.Euler(-90, 0, 90);
+                WeaponBase weapon = grabbedObject.GetComponent<WeaponBase>();
+                weapon.grabbed = true;
+                weapon.controller = controller;
+                weapon.player = player;
+                weapon.transform.localRotation = Quaternion.Euler(weapon.snapX, weapon.snapY, weapon.snapZ);
             }
         }
 

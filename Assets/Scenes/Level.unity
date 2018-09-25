@@ -442,10 +442,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   detectMask:
     serializedVersion: 2
-    m_Bits: 0
-  damage: 30
+    m_Bits: 1024
+  damage: 100
   durability: 100
-  damageSpeed: 0
+  damageSpeed: 0.1
   swingX: 1
   swingY: 1
   swingZ: 1
@@ -453,14 +453,17 @@ MonoBehaviour:
   grabbed: 0
   controller: 0
   player: {fileID: 0}
+  snapX: 0
+  snapY: 0
+  snapZ: 0
 --- !u!4 &80802461
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 80802459}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.46, y: 0, z: -0.85}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 0.634, y: 0.5, z: -0.85}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 380742824}
@@ -469,7 +472,7 @@ Transform:
   - {fileID: 541608982}
   m_Father: {fileID: 0}
   m_RootOrder: 20
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!1 &81267744
 GameObject:
   m_ObjectHideFlags: 0
@@ -6932,7 +6935,7 @@ Prefab:
     - target: {fileID: 114154779269398514, guid: 3c9fc4f1a42456648b25cd2d93fd4513,
         type: 2}
       propertyPath: damage
-      value: 50
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c9fc4f1a42456648b25cd2d93fd4513, type: 2}
@@ -7132,7 +7135,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   detectMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   damage: 100
   durability: 100
   damageSpeed: 0
@@ -7143,6 +7146,9 @@ MonoBehaviour:
   grabbed: 0
   controller: 0
   player: {fileID: 0}
+  snapX: 90
+  snapY: 0
+  snapZ: 0
 --- !u!1 &1646217889
 GameObject:
   m_ObjectHideFlags: 0
@@ -7812,7 +7818,7 @@ Prefab:
     - target: {fileID: 114154779269398514, guid: 3c9fc4f1a42456648b25cd2d93fd4513,
         type: 2}
       propertyPath: damage
-      value: 50
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c9fc4f1a42456648b25cd2d93fd4513, type: 2}
@@ -8288,7 +8294,7 @@ Prefab:
     - target: {fileID: 114154779269398514, guid: 3c9fc4f1a42456648b25cd2d93fd4513,
         type: 2}
       propertyPath: damage
-      value: 50
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c9fc4f1a42456648b25cd2d93fd4513, type: 2}

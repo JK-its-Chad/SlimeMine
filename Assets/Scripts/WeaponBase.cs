@@ -19,6 +19,8 @@ public class WeaponBase : MonoBehaviour {
     public OVRInput.Controller controller;
     public Movement player;
 
+    public float snapX = -90, snapY = 0, snapZ = 90;
+
     protected List<GameObject> dealDamage()
     {
         if (grabbed)
