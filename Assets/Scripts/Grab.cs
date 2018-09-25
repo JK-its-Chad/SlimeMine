@@ -11,6 +11,7 @@ public class Grab : MonoBehaviour {
     bool grabbing;
     public float grabRadius = .13f;
     public LayerMask grabMask;
+    public float snapX = -90, snapY = 0, SnapZ = 90;
 
     Quaternion lastRotation;
     Quaternion currentRotation;
