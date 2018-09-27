@@ -66,5 +66,6 @@ public class Movement : MonoBehaviour {
         otherText.color = Color.green;
         GameOver.color = Color.red;
         dead = true;
+        GameObject.FindObjectOfType<SlimeGen>().spawn = false;
     }
 }

@@ -6,15 +6,11 @@ public class SlimeGen : MonoBehaviour {
 
     public Transform aim;
     public GameObject[] slime;
-
-	void Start ()
-    {
-		
-	}
+    public bool spawn = true;
 	
 	void Update ()
     {
-		if(Input.GetButton("Fire1"))
+		if(Input.GetButton("Fire1") && spawn)
         {
             RaycastHit info;
             if (Physics.Raycast(aim.position, Vector3.forward, out info, 10))
