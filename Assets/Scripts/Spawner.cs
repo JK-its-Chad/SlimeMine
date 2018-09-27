@@ -26,10 +26,11 @@ public class Spawner : MonoBehaviour {
     Vector3 RandomCircle(Vector3 center, float radius)
     {
         float ang = Random.value * 360;
+        float angZ = Random.Range(-90f, 90f);
         Vector3 pos;
         pos.x = center.x + radius * Mathf.Sin(ang * Mathf.Deg2Rad);
         pos.y = 50;
-        pos.z = center.z + radius * Mathf.Cos(ang * Mathf.Deg2Rad);
+        pos.z = center.z + radius * Mathf.Cos(angZ * Mathf.Deg2Rad);
         return pos;
     }
 }

@@ -14,6 +14,7 @@ public class Grab : MonoBehaviour {
 
     Quaternion lastRotation;
     Quaternion currentRotation;
+    int roaz = 0;
 
     void GrabObject()
     {
@@ -31,6 +32,8 @@ public class Grab : MonoBehaviour {
             }
             grabbedObject = hits[closestHit].transform.gameObject;
             grabbedObject.GetComponent<Rigidbody>().isKinematic = true;
+            roaz = Mathf.RoundToInt(grabbedObject.transform.eulerAngles.x / 90);
+            Debug.Log(roaz);
             grabbedObject.transform.parent = transform;
             if(grabbedObject.GetComponent<WeaponBase>())
             {
@@ -39,7 +42,7 @@ public class Grab : MonoBehaviour {
                 weapon.grabbed = true;
                 weapon.controller = controller;
                 weapon.player = player;
-                weapon.transform.localRotation = Quaternion.Euler(weapon.snapX, weapon.snapY, weapon.snapZ);
+                weapon.transform.localRotation = Quaternion.Euler(roaz * 90, weapon.snapY, weapon.snapZ);//x: 0sword, 90key, 180knife, 270seppuku
             }
         }
 
