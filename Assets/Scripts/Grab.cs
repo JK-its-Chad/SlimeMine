@@ -32,8 +32,29 @@ public class Grab : MonoBehaviour {
             }
             grabbedObject = hits[closestHit].transform.gameObject;
             grabbedObject.GetComponent<Rigidbody>().isKinematic = true;
-            roaz = Mathf.RoundToInt(grabbedObject.transform.eulerAngles.x / 90);
-            Debug.Log(roaz);
+            //roaz = Mathf.RoundToInt(grabbedObject.transform.eulerAngles.x / 90);
+            //float angleX = grabbedObject.transform.eulerAngles.x;
+
+            Vector3 paz = ConvertQuant2Euler(grabbedObject.transform.rotation);
+
+            float angleX = paz.x;
+
+            if (angleX < 45 || angleX > 315)
+            {
+                roaz = 0;
+            }
+            else if (angleX >= 45 && angleX <= 135)
+            {
+                roaz = 1;
+            }
+            else if (angleX > 135 && angleX < 225)
+            {
+                roaz = 2;
+            }
+            else if (angleX >= 225 && angleX <= 315)
+            {
+                roaz = 3;
+            }
             grabbedObject.transform.parent = transform;
             if(grabbedObject.GetComponent<WeaponBase>())
             {
@@ -89,5 +110,25 @@ public class Grab : MonoBehaviour {
 
 		if(!grabbing && Input.GetAxis(buttonName) >= 0.9 ) GrabObject();
         if(grabbing && Input.GetAxis(buttonName) < 0.9) DropObject();
+    }
+
+    public static Vector3 ConvertQuant2Euler(Quaternion quaternion)
+    {
+        float tempEuler;
+        float[] eulerAngles = new float[3];
+
+        //Convert pitch - X
+        tempEuler = Mathf.Atan2(2 * quaternion.x * quaternion.w + 2 * quaternion.y * quaternion.z, 1 - 2 * quaternion.x * quaternion.x - 2 * quaternion.z * quaternion.z);
+        eulerAngles[0] = tempEuler * 180 / Mathf.PI;
+
+        //Convert yaw - Y
+        tempEuler = Mathf.Asin(2 * quaternion.x * quaternion.y + 2 * quaternion.z * quaternion.w);
+        eulerAngles[1] = tempEuler * 180 / Mathf.PI;
+
+        //Convert roll - Z
+        tempEuler = Mathf.Atan2(2 * quaternion.y * quaternion.w + 2 * quaternion.x * quaternion.z, 1 - 2 * quaternion.y * quaternion.y - 2 * quaternion.z * quaternion.z);
+        eulerAngles[2] = tempEuler * 180 / Mathf.PI;
+
+        return new Vector3(eulerAngles[0], eulerAngles[1], eulerAngles[2]);
     }
 }

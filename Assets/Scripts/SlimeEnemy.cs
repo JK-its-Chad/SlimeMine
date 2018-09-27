@@ -52,6 +52,10 @@ public class SlimeEnemy : MonoBehaviour {
 
             }
         }
+        if (target.GetComponent<Movement>().dead == true)
+        {
+            movementSpeed = -movementSpeed;
+        }
         
     }
 

@@ -19,7 +19,7 @@ public class Spawner : MonoBehaviour {
 
             newSlime.GetComponent<SlimeEnemy>().target = player;
 
-            timer = (6 - (Time.realtimeSinceStartup/100));            
+            timer = (5 - (Time.realtimeSinceStartup/100));            
         }
     }
 

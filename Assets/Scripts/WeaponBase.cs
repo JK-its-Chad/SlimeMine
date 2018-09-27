@@ -29,12 +29,15 @@ public class WeaponBase : MonoBehaviour {
             {
                 if (enemy.GetComponent<SlimeEnemy>())
                 {
-
-                    if (enemy.GetComponent<SlimeEnemy>().takeDamage(damage, player) && hasDurability)
+                    if(enemy.GetComponent<SlimeEnemy>().dead == false)
                     {
-                        Debug.Log("enemy hit");
-                        durability--;
-                        if (durability <= 0) Destroy(gameObject);
+                        enemy.GetComponent<Rigidbody>().AddForce(OVRInput.GetLocalControllerVelocity(controller) * 10);
+                        if (enemy.GetComponent<SlimeEnemy>().takeDamage(damage, player) && hasDurability)
+                        {
+                            Debug.Log("enemy hit");
+                            durability--;
+                            if (durability <= 0) Destroy(gameObject);
+                        }
                     }
                 }
                 else
@@ -111,5 +114,4 @@ public class WeaponBase : MonoBehaviour {
             }
         }
     }
-
 }
