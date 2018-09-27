@@ -13,7 +13,7 @@ public class Movement : MonoBehaviour {
     public Text SlimeCollected1;
     public TextMesh SlimeCollected2;
     public Text otherText;
-    public GameObject camera;
+    public GameObject camera, spawner;
 
     private float timer = 0;
     public bool dead = false;
@@ -66,6 +66,6 @@ public class Movement : MonoBehaviour {
         otherText.color = Color.green;
         GameOver.color = Color.red;
         dead = true;
-        GameObject.FindObjectOfType<SlimeGen>().spawn = false;
+        spawner.GetComponent<SlimeGen>().spawn = false;
     }
 }
