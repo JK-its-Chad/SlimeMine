@@ -56,6 +56,10 @@ public class SlimeEnemy : MonoBehaviour {
         {
             movementSpeed = -20;
         }
+        if(dead && transform.position.y == -10)
+        {
+            Destroy(gameObject);
+        }
         
     }
 
@@ -64,10 +68,11 @@ public class SlimeEnemy : MonoBehaviour {
         ITimer -= Time.deltaTime;
     }
 
-    public bool takeDamage(int damage, Movement player)
+    public bool takeDamage(int damage, Movement player, int force)
     {
         if (ITimer <= 0 && !dead)
         {
+            rig.AddForce((transform.position - player.FromMe).normalized * force);
             health -= damage;
             ITimer = 0.75f;
             if (health <= 0) Die(player);

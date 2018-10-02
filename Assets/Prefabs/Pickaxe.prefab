@@ -106,7 +106,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1365400368459998}
   m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0.634, y: 0.5, z: -0.85}
+  m_LocalPosition: {x: 1.378, y: 0.032, z: -0.85}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4214972891608096}
@@ -398,7 +398,7 @@ MonoBehaviour:
   detectMask:
     serializedVersion: 2
     m_Bits: 1024
-  damage: 100
+  damage: 50
   durability: 100
   damageSpeed: 0.1
   swingX: 1
@@ -408,6 +408,7 @@ MonoBehaviour:
   grabbed: 0
   controller: 0
   player: {fileID: 0}
+  force: 700
   snapX: 0
   snapY: 0
   snapZ: 0

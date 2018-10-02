@@ -14,6 +14,7 @@ public class Movement : MonoBehaviour {
     public TextMesh SlimeCollected2;
     public Text otherText;
     public GameObject camera, spawner;
+    public Vector3 FromMe;
 
     private float timer = 0;
     public bool dead = false;
@@ -27,12 +28,14 @@ public class Movement : MonoBehaviour {
 
     void Update ()
     {
-
+        FromMe = gameObject.transform.position;
         timer -= Time.deltaTime;
         if (!dead)
         {
             Vector3 MoveDir = new Vector3(Input.GetAxis("Oculus_GearVR_LThumbstickX"), 0, Input.GetAxis("Oculus_GearVR_LThumbstickY")) * Time.deltaTime;
             Vector3 cameraRot = camera.transform.rotation.eulerAngles;
+            //cameraRot += new Vector3(Input.GetAxis("Oculus_GearVR_RThumbstickX"), 0, Input.GetAxis("Oculus_GearVR_RThumbstickY")) * Time.deltaTime;
+            //camera.transform.rotation = Quaternion.Euler(cameraRot);
             transform.position += Quaternion.Euler(0, cameraRot.y, 0) * MoveDir;
             if (timer >= 0)
             {

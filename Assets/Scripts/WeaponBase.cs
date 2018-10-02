@@ -19,6 +19,7 @@ public class WeaponBase : MonoBehaviour
     public bool grabbed = false;
     public OVRInput.Controller controller;
     public Movement player;
+    public int force = 500;
 
     public float snapX = -90, snapY = 0, snapZ = 90;
 
@@ -30,8 +31,8 @@ public class WeaponBase : MonoBehaviour
             {
                 if (enemy.GetComponent<SlimeEnemy>())
                 {
-                    //enemy.GetComponent<Rigidbody>().AddForce(OVRInput.GetLocalControllerVelocity(controller) * 10);
-                    if (enemy.GetComponent<SlimeEnemy>().takeDamage(damage, player) && hasDurability)
+                    
+                    if (enemy.GetComponent<SlimeEnemy>().takeDamage(damage, player, force) && hasDurability)
                     {
                         Debug.Log("enemy hit");
                         durability--;

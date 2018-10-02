@@ -87,8 +87,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1833558073461342}
-  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
-  m_LocalPosition: {x: 2.509, y: 1.28, z: -0.021}
+  m_LocalRotation: {x: 1, y: 0, z: 0, w: 0}
+  m_LocalPosition: {x: 2.634, y: 1.25, z: -0.025}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4402251267788538}
@@ -96,7 +96,7 @@ Transform:
   - {fileID: 4467499257270834}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
+  m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
 --- !u!4 &4402251267788538
 Transform:
   m_ObjectHideFlags: 1
@@ -312,7 +312,7 @@ MonoBehaviour:
   detectMask:
     serializedVersion: 2
     m_Bits: 1024
-  damage: 100
+  damage: 50
   durability: 1000
   damageSpeed: 0.1
   swingX: 1
@@ -322,6 +322,7 @@ MonoBehaviour:
   grabbed: 0
   controller: 0
   player: {fileID: 0}
+  force: 500
   snapX: 0
   snapY: 0
   snapZ: 0
