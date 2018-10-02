@@ -2,18 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponBase : MonoBehaviour {
+public class WeaponBase : MonoBehaviour
+{
 
     private Rigidbody rB;
     private List<GameObject> enemiesHit = new List<GameObject>();
 
     public LayerMask detectMask;
-    public int damage = 10; 
+    public int damage = 10;
     public int durability = 100;    // weapon durability
     public float damageSpeed;         // speed required for a swung object to deal damage
-    public bool swingX = true;      
+    public bool swingX = true;
     public bool swingY = true;      // bools for if swinging an object in a local direction deals damage
-    public bool swingZ = true;  
+    public bool swingZ = true;
     public bool hasDurability;
     public bool grabbed = false;
     public OVRInput.Controller controller;
@@ -29,15 +30,12 @@ public class WeaponBase : MonoBehaviour {
             {
                 if (enemy.GetComponent<SlimeEnemy>())
                 {
-                    if(enemy.GetComponent<SlimeEnemy>().dead == false)
+                    //enemy.GetComponent<Rigidbody>().AddForce(OVRInput.GetLocalControllerVelocity(controller) * 10);
+                    if (enemy.GetComponent<SlimeEnemy>().takeDamage(damage, player) && hasDurability)
                     {
-                        enemy.GetComponent<Rigidbody>().AddForce(OVRInput.GetLocalControllerVelocity(controller) * 10);
-                        if (enemy.GetComponent<SlimeEnemy>().takeDamage(damage, player) && hasDurability)
-                        {
-                            Debug.Log("enemy hit");
-                            durability--;
-                            if (durability <= 0) Destroy(gameObject);
-                        }
+                        Debug.Log("enemy hit");
+                        durability--;
+                        if (durability <= 0) Destroy(gameObject);
                     }
                 }
                 else
