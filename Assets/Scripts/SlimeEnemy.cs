@@ -85,6 +85,7 @@ public class SlimeEnemy : MonoBehaviour {
     private void Die(Movement player)
     {
         dead = true;
+        gameObject.tag = "Corpse";
         Transform[] allChildren = GetComponentsInChildren<Transform>();
         foreach (Transform child in allChildren)
         {

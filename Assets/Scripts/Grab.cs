@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Grab : MonoBehaviour {
+public class Grab : MonoBehaviour
+{
 
     public Movement player;
     public OVRInput.Controller controller;
@@ -23,10 +24,10 @@ public class Grab : MonoBehaviour {
         RaycastHit[] hits;
         hits = Physics.SphereCastAll(transform.position, grabRadius, transform.forward, 0f, grabMask);
 
-        if(hits.Length > 0)
+        if (hits.Length > 0)
         {
             int closestHit = 0;
-            for(int i = 0; i < hits.Length; i++)
+            for (int i = 0; i < hits.Length; i++)
             {
                 if (hits[i].distance > hits[closestHit].distance) closestHit = i;
             }
@@ -56,7 +57,11 @@ public class Grab : MonoBehaviour {
                 roaz = 3;
             }
             grabbedObject.transform.parent = transform;
-            if(grabbedObject.GetComponent<WeaponBase>())
+            if (grabbedObject.GetComponent<GravityWand>())
+            {
+                grabbedObject.GetComponent<GravityWand>().grabbed = true;
+            }
+            if (grabbedObject.GetComponent<WeaponBase>())
             {
                 grabbedObject.transform.position = transform.position;
                 WeaponBase weapon = grabbedObject.GetComponent<WeaponBase>();
@@ -73,7 +78,7 @@ public class Grab : MonoBehaviour {
     {
         grabbing = false;
 
-        if(grabbedObject != null)
+        if (grabbedObject != null)
         {
             grabbedObject.transform.parent = null;
             grabbedObject.GetComponent<Rigidbody>().isKinematic = false;
@@ -81,6 +86,10 @@ public class Grab : MonoBehaviour {
             grabbedObject.GetComponent<Rigidbody>().velocity = OVRInput.GetLocalControllerVelocity(controller);
             grabbedObject.GetComponent<Rigidbody>().angularVelocity = GetAngularVelocity();
 
+            if (grabbedObject.GetComponent<GravityWand>())
+            {
+                grabbedObject.GetComponent<GravityWand>().grabbed = false;
+            }
             if (grabbedObject.GetComponent<WeaponBase>())
             {
                 grabbedObject.GetComponent<WeaponBase>().grabbed = false;
@@ -100,16 +109,16 @@ public class Grab : MonoBehaviour {
                            Mathf.DeltaAngle(0, deltaRotation.eulerAngles.z));
     }
 
-	void Update ()
+    void Update()
     {
-        if(grabbedObject !=null)
+        if (grabbedObject != null)
         {
             lastRotation = currentRotation;
             currentRotation = grabbedObject.transform.rotation;
         }
 
-		if(!grabbing && Input.GetAxis(buttonName) >= 0.9 ) GrabObject();
-        if(grabbing && Input.GetAxis(buttonName) < 0.9) DropObject();
+        if (!grabbing && Input.GetAxis(buttonName) >= 0.9) GrabObject();
+        if (grabbing && Input.GetAxis(buttonName) < 0.9) DropObject();
     }
 
     public static Vector3 ConvertQuant2Euler(Quaternion quaternion)
