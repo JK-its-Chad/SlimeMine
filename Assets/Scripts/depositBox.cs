@@ -15,6 +15,7 @@ public class depositBox : MonoBehaviour {
     {
         if (collision.gameObject.GetComponentInParent<SlimeEnemy>())
         {
+            collision.gameObject.tag = "Untagged";
             if (collision.gameObject.GetComponentInParent<SlimeEnemy>().dead)
             {
                 slime += collision.gameObject.GetComponentInParent<SlimeEnemy>().slimeValue;

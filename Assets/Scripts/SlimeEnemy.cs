@@ -56,7 +56,7 @@ public class SlimeEnemy : MonoBehaviour {
         {
             movementSpeed = -20;
         }
-        if(dead && transform.position.y == -10)
+        if(dead && (transform.position.y <= -10 || transform.position.y >= 100))
         {
             Destroy(gameObject);
         }
