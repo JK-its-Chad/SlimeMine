@@ -1,0 +1,9 @@
+Joseph Chadwick 
+Connor Fahie
+
+Fall 2018
+AGGP 231
+
+Lab02
+
+All scripts are in the scripts folder
