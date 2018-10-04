@@ -12,12 +12,15 @@ public class Movement : MonoBehaviour {
     public Text GameOver;
     public Text SlimeCollected1;
     public TextMesh SlimeCollected2;
+    public Text GameTimer;
     public Text otherText;
     public GameObject camera, spawner;
     public Vector3 FromMe;
 
     private float timer = 0;
+    private float gameTimer = 0;
     public bool dead = false;
+    private int minutes = 0, seconds = 0;
 
     private void Start()
     {
@@ -30,8 +33,17 @@ public class Movement : MonoBehaviour {
     {
         FromMe = gameObject.transform.position;
         timer -= Time.deltaTime;
+
         if (!dead)
         {
+            if (seconds >= 60) minutes++;
+            seconds = (int)Time.realtimeSinceStartup - (minutes * 60);
+            if(seconds <= 10)
+            {
+                GameTimer.text = "Time: " + minutes + ":0" + seconds;
+            }
+            else GameTimer.text = "Time: " + minutes + ":" + seconds;
+
             Vector3 MoveDir = new Vector3(Input.GetAxis("Oculus_GearVR_LThumbstickX"), 0, Input.GetAxis("Oculus_GearVR_LThumbstickY")) * Time.deltaTime;
             Vector3 cameraRot = camera.transform.rotation.eulerAngles;
             //cameraRot += new Vector3(Input.GetAxis("Oculus_GearVR_RThumbstickX"), 0, Input.GetAxis("Oculus_GearVR_RThumbstickY")) * Time.deltaTime;
