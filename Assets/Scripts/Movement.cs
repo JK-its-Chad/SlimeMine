@@ -16,6 +16,7 @@ public class Movement : MonoBehaviour {
     public Text otherText;
     public GameObject camera, spawner;
     public Vector3 FromMe;
+    float angle = 0;
 
     private float timer = 0;
     private float gameTimer = 0;
@@ -46,7 +47,11 @@ public class Movement : MonoBehaviour {
 
             Vector3 MoveDir = new Vector3(Input.GetAxis("Oculus_GearVR_LThumbstickX"), 0, Input.GetAxis("Oculus_GearVR_LThumbstickY")) * Time.deltaTime;
             Vector3 cameraRot = camera.transform.rotation.eulerAngles;
-            //cameraRot += new Vector3(Input.GetAxis("Oculus_GearVR_RThumbstickX"), 0, Input.GetAxis("Oculus_GearVR_RThumbstickY")) * Time.deltaTime;
+            if (Input.GetAxis("Oculus_GearVR_RThumbstickX") > .9 || Input.GetAxis("Oculus_GearVR_RThumbstickX") < -.9)
+            {
+                angle += Input.GetAxis("Oculus_GearVR_RThumbstickX");
+                transform.rotation = Quaternion.Euler(new Vector3(0, transform.rotation.y + angle * .5f , 0));
+            }
             //camera.transform.rotation = Quaternion.Euler(cameraRot);
             transform.position += Quaternion.Euler(0, cameraRot.y, 0) * MoveDir;
             if (timer >= 0)
@@ -81,6 +86,6 @@ public class Movement : MonoBehaviour {
         otherText.color = Color.green;
         GameOver.color = Color.red;
         dead = true;
-        spawner.GetComponent<SlimeGen>().spawn = false;
+        spawner.GetComponent<Spawner>().spawn = false;
     }
 }

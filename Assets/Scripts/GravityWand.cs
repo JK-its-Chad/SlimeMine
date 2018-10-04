@@ -18,6 +18,7 @@ public class GravityWand : MonoBehaviour {
     {
 		if(grabbed)
         {
+            gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
             enemies = GameObject.FindGameObjectsWithTag("Corpse");
             foreach (GameObject enemy in enemies)
             {

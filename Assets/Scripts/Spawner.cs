@@ -9,17 +9,19 @@ public class Spawner : MonoBehaviour {
     private float randomNum1;
     private float randomNum2;
     private float timer = 3;
+    public bool spawn = true;
+    public float baseSpawnTime = 5;
 
     void Update()
     {
         timer -= Time.deltaTime;
-        if (timer <= 0)
+        if (timer <= 0 && spawn)
         {
             GameObject newSlime = Instantiate(slime, RandomCircle(Vector3.zero, 20), Quaternion.identity);
 
             newSlime.GetComponent<SlimeEnemy>().target = player;
 
-            timer = (5 - (Time.realtimeSinceStartup/100));            
+            timer = (baseSpawnTime - (Time.realtimeSinceStartup/100));            
         }
     }
 
