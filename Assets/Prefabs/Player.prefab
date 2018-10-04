@@ -520,7 +520,7 @@ MonoBehaviour:
   grabRadius: 0.1
   grabMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 2560
 --- !u!114 &114317940792698852
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -565,7 +565,7 @@ MonoBehaviour:
   grabRadius: 0.1
   grabMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 2560
 --- !u!114 &114524182256661164
 MonoBehaviour:
   m_ObjectHideFlags: 1

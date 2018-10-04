@@ -89,13 +89,13 @@ public class SlimeEnemy : MonoBehaviour {
         Transform[] allChildren = GetComponentsInChildren<Transform>();
         foreach (Transform child in allChildren)
         {
-            child.gameObject.layer = 9;
+            child.gameObject.layer = 11;
             if (child.gameObject.GetComponent<MeshRenderer>())
             {
                 child.gameObject.GetComponent<MeshRenderer>().material = deadRed;
             }
         }
-        gameObject.layer = 9;
+        gameObject.layer = 11;
         rig.freezeRotation = false;
     }
 }

@@ -6,6 +6,7 @@ public class GravityWand : MonoBehaviour {
 
     public bool grabbed = false;
     GameObject[] enemies;
+    public int force = -100;
 
     // Use this for initialization
     void Start () {
@@ -20,8 +21,17 @@ public class GravityWand : MonoBehaviour {
             enemies = GameObject.FindGameObjectsWithTag("Corpse");
             foreach (GameObject enemy in enemies)
             {
-                enemy.GetComponent<Rigidbody>().AddForce((enemy.transform.position - transform.position).normalized * -100);
-            }
+                enemy.GetComponent<Rigidbody>().AddForce((enemy.transform.position - transform.position).normalized * force);
+                if((enemy.transform.position - transform.position).magnitude <= .1)
+                {
+                    enemy.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                    enemy.GetComponent<Rigidbody>().isKinematic = true;
+                }
+                else
+                {
+                    enemy.GetComponent<Rigidbody>().isKinematic = false;
+                }
+            }   
         }
 	}
 }

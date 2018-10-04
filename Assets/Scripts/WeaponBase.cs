@@ -29,19 +29,22 @@ public class WeaponBase : MonoBehaviour
         {
             foreach (GameObject enemy in enemiesHit)
             {
-                if (enemy.GetComponent<SlimeEnemy>())
+                if (enemy)
                 {
-                    
-                    if (enemy.GetComponent<SlimeEnemy>().takeDamage(damage, player, force) && hasDurability)
+                    if (enemy.GetComponent<SlimeEnemy>())
                     {
-                        Debug.Log("enemy hit");
-                        durability--;
-                        if (durability <= 0) Destroy(gameObject);
+
+                        if (enemy.GetComponent<SlimeEnemy>().takeDamage(damage, player, force) && hasDurability)
+                        {
+                            Debug.Log("enemy hit");
+                            durability--;
+                            if (durability <= 0) Destroy(gameObject);
+                        }
                     }
-                }
-                else
-                {
-                    enemiesHit.Remove(enemy);
+                    else
+                    {
+                        enemiesHit.Remove(enemy);
+                    }
                 }
             }
             return enemiesHit;
