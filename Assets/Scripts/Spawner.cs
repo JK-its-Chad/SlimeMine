@@ -21,6 +21,8 @@ public class Spawner : MonoBehaviour {
 
             newSlime.GetComponent<SlimeEnemy>().target = player;
 
+            newSlime.transform.localScale = Vector3.one * Random.Range(.4f, 1);
+
             timer = (baseSpawnTime - (Time.realtimeSinceStartup/100));            
         }
     }
